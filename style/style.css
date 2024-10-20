@@ -5,8 +5,15 @@ body {
     background-color: #f4f4f4;
 }
 
-h1, h2 {
+h1 {
+    color: #adbadc;
+}
+
+h2 {
     color: #1e88e5;
+}
+
+h1, h2 {
     margin-bottom: 20px;
 }
 
@@ -36,13 +43,14 @@ h1, h2 {
 }
 
 .container {
-    padding: 60px 15px;
+    padding: 10px 15px;
 }
 
-/* Hero Section */
 .hero {
-    background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center;
+    background-image: url('../images/welcome.jpg');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -57,8 +65,14 @@ h1, h2 {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* Button Styles */
 .btn-primary {
     background-color: #1e88e5;
     border-color: #1e88e5;
 }
+
+.navbar-logo {
+    height: 100px; /* Adjust height as needed */
+    width: auto;
+    margin-right: 10px;
+}
+
