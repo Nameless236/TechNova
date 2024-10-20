@@ -71,8 +71,16 @@ h1, h2 {
 }
 
 .navbar-logo {
-    height: 100px; /* Adjust height as needed */
+    height: 15vh;
     width: auto;
     margin-right: 10px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 7px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 0 0 10px 0;
+    margin-bottom: 20px;
 }
 
