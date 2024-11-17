@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programs - TechNova Labs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+@extends('layouts.root')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+@section('title', 'TechNova Labs - Programs')
 
-    <link href="style/style.css" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <div class="logo-container">
-            <img src="images/logo.png" alt="TechNova Logo" class="navbar-logo">
-        </div>
-        <a class="navbar-brand" href="index.html">TechNova Labs</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                <li class="nav-item active"><a class="nav-link" href="#">Programs</a></li>
-                <li class="nav-item"><a class="nav-link" href="innovations.html">Innovations</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+@section('content')
 <div class="hero text-center py-5 bg-light">
     <h1>Our Programs</h1>
     <p>Explore a variety of hands-on programs designed to drive innovation and creativity in the field of technology.</p>
@@ -42,7 +13,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img src="images/machine_learning.jpg" class="card-img-top" alt="AI Program">
+                <img src="{{ asset('images/machine_learning.jpg') }}" class="card-img-top" alt="AI Program">
                 <div class="card-body">
                     <h5 class="card-title">AI & Machine Learning Bootcamp</h5>
                     <p class="card-text">An immersive 6-week program that covers the fundamentals of AI and machine learning, focusing on real-world applications.</p>
@@ -52,7 +23,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/robotics.jpg" class="card-img-top" alt="Robotics Program">
+                <img src="{{ asset('images/robotics.jpg') }}" class="card-img-top" alt="Robotics Program">
                 <div class="card-body">
                     <h5 class="card-title">Robotics Development Workshop</h5>
                     <p class="card-text">A 4-week workshop where participants design and build autonomous robots for industry and research purposes.</p>
@@ -62,7 +33,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/3d_modeling.jpg" class="card-img-top" alt="3D Printing Program">
+                <img src="{{ asset('images/3d_modeling.jpg') }}" class="card-img-top" alt="3D Printing Program">
                 <div class="card-body">
                     <h5 class="card-title">3D Printing for Innovators</h5>
                     <p class="card-text">Learn how to design, prototype, and produce real-world products using cutting-edge 3D printing technology in this 5-week program.</p>
@@ -124,13 +95,6 @@
 <section class="container py-5 text-center">
     <h2>Ready to Join?</h2>
     <p>Discover how our programs can help you advance your career and skillset in tech innovation.</p>
-    <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+    <a href="{{ route('contact') }}" class="btn btn-primary">Get in Touch</a>
 </section>
-
-
-<footer class="footer">
-    <p>&copy; 2024 TechNova Labs. All Rights Reserved.</p>
-</footer>
-
-</body>
-</html>
+@endsection

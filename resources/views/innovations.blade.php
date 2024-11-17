@@ -1,37 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovations - TechNova Labs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+@extends('layouts.root')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+@section('title', 'TechNova Labs - Innovations')
 
-    <link href="style/style.css" rel="stylesheet">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <div class="logo-container">
-            <img src="images/logo.png" alt="TechNova Logo" class="navbar-logo">
-        </div>
-        <a class="navbar-brand" href="index.html">TechNova Labs</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="programs.html">Programs</a></li>
-                <li class="nav-item active"><a class="nav-link" href="#">Innovations</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
+@section('content')
 <div class="hero text-center py-5 bg-light">
     <h1>Our Innovations</h1>
     <p>Leading the way in cutting-edge technology and groundbreaking research that shapes the future.</p>
@@ -42,7 +13,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img src="images/robotics.jpg" class="card-img-top" alt="Drone Innovation">
+                <img src="{{ asset('images/robotics.jpg') }}" class="card-img-top" alt="Drone Innovation">
                 <div class="card-body">
                     <h5 class="card-title">Autonomous Drone Swarm</h5>
                     <p class="card-text">Our drone technology research focuses on autonomous swarming, enabling multiple drones to perform complex tasks collaboratively without human intervention.</p>
@@ -52,7 +23,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/machine_learning.jpg" class="card-img-top" alt="AI Assistant">
+                <img src="{{ asset('images/machine_learning.jpg') }}" class="card-img-top" alt="AI Assistant">
                 <div class="card-body">
                     <h5 class="card-title">AI Personal Assistant</h5>
                     <p class="card-text">Developing advanced AI-driven personal assistants that leverage natural language processing and machine learning to assist in daily tasks and decision-making.</p>
@@ -62,7 +33,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/biotech.jpg" class="card-img-top" alt="Biotech Innovation">
+                <img src="{{ asset('images/biotech.jpg') }}" class="card-img-top" alt="Biotech Innovation">
                 <div class="card-body">
                     <h5 class="card-title">Biotechnology in Medicine</h5>
                     <p class="card-text">Our biotechnology division is creating breakthroughs in personalized medicine, allowing for targeted therapies based on individual genetic profiles.</p>
@@ -110,7 +81,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="card">
-                <img src="images/ceo_Jane.jpg" class="card-img-top" alt="Team Member">
+                <img src="{{ asset('images/ceo_Jane.jpg') }}" class="card-img-top" alt="Team Member">
                 <div class="card-body">
                     <h5 class="card-title">Dr. Sarah Johnson</h5>
                     <p class="card-text">Lead Researcher, AI & Machine Learning</p>
@@ -119,7 +90,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/cto_John.jpg" class="card-img-top" alt="Team Member">
+                <img src="{{ asset('images/cto_John.jpg') }}" class="card-img-top" alt="Team Member">
                 <div class="card-body">
                     <h5 class="card-title">Dr. Mark Thompson</h5>
                     <p class="card-text">Lead Researcher, Quantum Computing</p>
@@ -128,7 +99,7 @@
         </div>
         <div class="col-md-4">
             <div class="card">
-                <img src="images/dr_Sarah.jpg" class="card-img-top" alt="Team Member">
+                <img src="{{ asset('images/dr_Sarah.jpg') }}" class="card-img-top" alt="Team Member">
                 <div class="card-body">
                     <h5 class="card-title">Dr. Emily White</h5>
                     <p class="card-text">Head of Robotics and Automation</p>
@@ -156,9 +127,4 @@
         <button type="submit" class="btn btn-primary">Submit Idea</button>
     </form>
 </section>
-
-<footer class="footer">
-    <p>&copy; 2024 TechNova Labs. All Rights Reserved.</p>
-</footer>
-</body>
-</html>
+@endsection
