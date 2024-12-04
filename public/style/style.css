@@ -97,7 +97,7 @@ p {
 .card-img-top {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Allow the image to grow */
+    object-fit: cover;
 }
 
 .card-body {
@@ -109,11 +109,11 @@ p {
 }
 
 .card-title {
-    margin-bottom: 10px; /* Add some space below the title */
+    margin-bottom: 10px;
 }
 
 .card-text {
-    margin-bottom: 20px; /* Add some space below the text */
+    margin-bottom: 20px;
 }
 
 .img-detail {

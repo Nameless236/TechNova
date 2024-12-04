@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (changeImageCheckbox) {
             changeImageCheckbox.addEventListener('change', function () {
                 fileInput.disabled = !this.checked;
+                if (!this.checked) {
+                    clearError(fileInput);
+                }
             });
         }
 
@@ -46,6 +49,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function confirmDelete(programId) {
+    const confirmation = confirm('Are you sure you want to delete this program?');
+    if (confirmation) {
+        document.getElementById(`deleteForm-${programId}`).submit();
+    }
+}
 
 function validateField(field) {
     const errorMessages = {
