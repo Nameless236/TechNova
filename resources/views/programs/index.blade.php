@@ -25,10 +25,10 @@
                         <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-sm btn-outline-secondary me-1">
                             <i class="bi bi-pencil"></i>
                         </a>
-                        <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
+                        <form id="deleteForm-{{ $program->id }}" action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDelete({{ $program->id }})">
                                 <i class="bi bi-trash3-fill"></i>
                             </button>
                         </form>

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProgramController extends Controller
 {
@@ -35,7 +37,7 @@ class ProgramController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : RedirectResponse
     {
         $request->validate([
             'title' => 'required|string|max:50',
@@ -76,7 +78,7 @@ class ProgramController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Program $program)
+    public function update(Request $request, Program $program): RedirectResponse
     {
         $request->validate([
             'title' => 'required|string|max:35',
@@ -104,11 +106,11 @@ class ProgramController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Program $program)
+    public function destroy(Program $program): RedirectResponse
     {
         // Delete the image file from storage
         if ($program->imagePath) {
-            \Storage::disk('public')->delete($program->imagePath);
+            Storage::disk('public')->delete($program->imagePath);
         }
 
         // Delete the program from the database
