@@ -28,6 +28,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary" onclick="validateForm()" >Submit</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ route('programs.index') }}'">Cancel</button>
 </form>
 
 
