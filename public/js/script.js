@@ -57,7 +57,8 @@ function validateField(field) {
         name: 'Name is required.',
         email: 'Email is required.',
         emailInvalid: 'Invalid email format.',
-        message: 'Message is required.'
+        message: 'Message is required.',
+        containsNumber: 'Name must not contain numbers.'
     };
 
     let isValid = true;
@@ -86,9 +87,15 @@ function validateField(field) {
                 errorMessage = errorMessages.imageType;
             }
         }
-    } else if (field.id === 'name' && field.value.trim() === '') {
-        isValid = false;
-        errorMessage = errorMessages.name;
+    } else if (field.id === 'name') {
+
+        if (field.value.trim() === '') {
+            isValid = false;
+            errorMessage = errorMessages.name;
+        } else if (containsNumber(field.value)) {
+            isValid = false;
+            errorMessage = errorMessages.containsNumber;
+        }
     } else if (field.id === 'email') {
         if (field.value.trim() === '') {
             isValid = false;
@@ -109,6 +116,11 @@ function validateField(field) {
     }
 
     return isValid;
+}
+
+function containsNumber(input) {
+    const regex = /\d/;
+    return regex.test(input);
 }
 
 function validateFormProgram() {
