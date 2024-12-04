@@ -5,7 +5,7 @@
 @section('content')
 <div class="hero">
     <h1>Welcome to TechNova Labs</h1>
-    <a href="{{ route('programs') }}" class="btn btn-primary">Explore Our Programs</a>
+    <a href="{{ route('programs.index') }}" class="btn btn-primary">Explore Our Programs</a>
 </div>
 
 <section class="container">

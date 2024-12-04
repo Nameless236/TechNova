@@ -24,6 +24,8 @@ RUN useradd -u $uid -ms /bin/bash -g www-data $user
 
 COPY . /var/www
 
+COPY ./public/ /var/www/public
+
 COPY --chown=$user:www-data . /var/www
 
 USER $user

@@ -6,41 +6,39 @@
 <div class="hero text-center py-5 bg-light">
     <h1>Our Programs</h1>
     <p>Explore a variety of hands-on programs designed to drive innovation and creativity in the field of technology.</p>
+    <a href="{{ route('programs.create') }}" class="btn btn-primary mb-3">Create New Program</a>
 </div>
 
 <section class="container py-5">
     <h2>Our Featured Programs</h2>
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <img src="{{ asset('images/machine_learning.jpg') }}" class="card-img-top" alt="AI Program">
-                <div class="card-body">
-                    <h5 class="card-title">AI & Machine Learning Bootcamp</h5>
-                    <p class="card-text">An immersive 6-week program that covers the fundamentals of AI and machine learning, focusing on real-world applications.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+        @foreach($programs as $program)
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <img src="{{ asset('storage/' . $program->imagePath) }}" class="card-img-top" alt="{{ $program->title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $program->title }}</h5>
+                        <p class="card-text">{{ Str::limit($program->description, 30) }}</p>
+                        <a href="{{ route('programs.show', $program->id) }}" class="btn btn-primary">Learn More</a>
+                    </div>
+                    <div class="card-actions position-absolute top-0 end-0 p-2">
+                        <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-sm btn-outline-secondary me-1">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash3-fill"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="{{ asset('images/robotics.jpg') }}" class="card-img-top" alt="Robotics Program">
-                <div class="card-body">
-                    <h5 class="card-title">Robotics Development Workshop</h5>
-                    <p class="card-text">A 4-week workshop where participants design and build autonomous robots for industry and research purposes.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <img src="{{ asset('images/3d_modeling.jpg') }}" class="card-img-top" alt="3D Printing Program">
-                <div class="card-body">
-                    <h5 class="card-title">3D Printing for Innovators</h5>
-                    <p class="card-text">Learn how to design, prototype, and produce real-world products using cutting-edge 3D printing technology in this 5-week program.</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
-                </div>
-            </div>
-        </div>
+        @endforeach
+    </div>
+    <div class="d-flex justify-content-center">
+        {{ $programs->links() }}
     </div>
 </section>
 
