@@ -3,113 +3,143 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.querySelector('form#contactForm');
 
     if (mainForm) {
+        mainForm.addEventListener('input', function (event) {
+            validateField(event.target);
+        });
+
         mainForm.addEventListener('submit', function (event) {
-            if (!validateForm()) {
-                event.preventDefault();
+            event.preventDefault();
+            if (validateFormProgram()) {
+                mainForm.submit();
             }
         });
     }
 
     if (contactForm) {
+        contactForm.addEventListener('input', function (event) {
+            validateField(event.target);
+        });
+
         contactForm.addEventListener('submit', function (event) {
-            if (!validateFormContact()) {
-                event.preventDefault();
+            event.preventDefault();
+            if (validateFormContact()) {
+                contactForm.submit();
             }
         });
     }
 });
 
-function validateForm() {
+function validateField(field) {
+    const errorMessages = {
+        title: 'Title is required.',
+        description: 'Description is required.',
+        descriptionLength: 'Description must be at least 50 characters.',
+        image: 'Image is required.',
+        imageType: 'Only JPEG, JPG, PNG, and GIF files are allowed.',
+        name: 'Name is required.',
+        email: 'Email is required.',
+        emailInvalid: 'Invalid email format.',
+        message: 'Message is required.'
+    };
+
     let isValid = true;
+    let errorMessage = '';
 
-    document.querySelectorAll('.error-message').forEach(el => el.remove());
-
-    const title = document.getElementById('title');
-    if (title.value.trim() === '') {
-        title.classList.add('is-invalid');
-        showError(title, 'Title is required.');
+    if (field.id === 'title' && field.value.trim() === '') {
         isValid = false;
-    } else {
-        title.classList.remove('is-invalid');
-    }
-
-    const description = document.getElementById('description');
-    if (description.value.trim() === '') {
-        description.classList.add('is-invalid');
-        showError(description, 'Description is required.');
-        isValid = false;
-    } else if (description.value.length < 50) {
-        description.classList.add('is-invalid');
-        showError(description, 'Description must be at least 50 characters.');
-        isValid = false;
-    } else {
-        description.classList.remove('is-invalid');
-    }
-
-    const image = document.getElementById('image');
-    if (image.files.length === 0) {
-        image.classList.add('is-invalid');
-        showError(image, 'Image is required.');
-        isValid = false;
-    } else {
-        const fileType = image.files[0].type;
-        const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-        if (!validTypes.includes(fileType)) {
-            image.classList.add('is-invalid');
-            showError(image, 'Only JPEG, JPG, PNG, and GIF files are allowed.');
+        errorMessage = errorMessages.title;
+    } else if (field.id === 'description') {
+        if (field.value.trim() === '') {
             isValid = false;
-        } else {
-            image.classList.remove('is-invalid');
+            errorMessage = errorMessages.description;
+        } else if (field.value.length < 50) {
+            isValid = false;
+            errorMessage = errorMessages.descriptionLength;
         }
+    } else if (field.id === 'image') {
+        if (field.files.length === 0) {
+            isValid = false;
+            errorMessage = errorMessages.image;
+        } else {
+            const fileType = field.files[0].type;
+            const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+            if (!validTypes.includes(fileType)) {
+                isValid = false;
+                errorMessage = errorMessages.imageType;
+            }
+        }
+    } else if (field.id === 'name' && field.value.trim() === '') {
+        isValid = false;
+        errorMessage = errorMessages.name;
+    } else if (field.id === 'email') {
+        if (field.value.trim() === '') {
+            isValid = false;
+            errorMessage = errorMessages.email;
+        } else if (!validateEmail(field.value)) {
+            isValid = false;
+            errorMessage = errorMessages.emailInvalid;
+        }
+    } else if (field.id === 'message' && field.value.trim() === '') {
+        isValid = false;
+        errorMessage = errorMessages.message;
+    }
+
+    if (!isValid) {
+        showError(field, errorMessage);
+    } else {
+        clearError(field);
     }
 
     return isValid;
 }
 
-function confirmDelete(programId) {
-    if (confirm('Are you sure you want to delete this program?')) {
-        document.getElementById('deleteForm-' + programId).submit();
-    }
+function validateFormProgram() {
+    let isValid = true;
+
+    document.querySelectorAll('.error-message').forEach(el => el.remove());
+
+    const fields = ['title', 'description', 'image'];
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
+
+    return isValid;
 }
 
 function validateFormContact() {
     let isValid = true;
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
 
-    // Clear previous error messages
     document.querySelectorAll('.error-message').forEach(el => el.remove());
 
-    // Name validation
-    if (name.value.trim() === '') {
-        isValid = false;
-        showError(name, 'Name is required.');
-    }
-
-    // Email validation
-    if (email.value.trim() === '') {
-        isValid = false;
-        showError(email, 'Email is required.');
-    } else if (!validateEmail(email.value)) {
-        isValid = false;
-        showError(email, 'Invalid email format.');
-    }
-
-    // Message validation
-    if (message.value.trim() === '') {
-        isValid = false;
-        showError(message, 'Message is required.');
-    }
+    const fields = ['name', 'email', 'message'];
+    fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (!validateField(field)) {
+            isValid = false;
+        }
+    });
 
     return isValid;
 }
 
 function showError(input, message) {
+    clearError(input);
     const error = document.createElement('div');
     error.className = 'error-message text-danger';
     error.innerText = message;
     input.parentElement.appendChild(error);
+    input.classList.add('is-invalid');
+}
+
+function clearError(input) {
+    const error = input.parentElement.querySelector('.error-message');
+    if (error) {
+        error.remove();
+    }
+    input.classList.remove('is-invalid');
 }
 
 function validateEmail(email) {
