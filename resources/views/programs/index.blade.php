@@ -93,6 +93,6 @@
 <section class="container py-5 text-center">
     <h2>Ready to Join?</h2>
     <p>Discover how our programs can help you advance your career and skillset in tech innovation.</p>
-    <a href="{{ route('contact') }}" class="btn btn-primary">Get in Touch</a>
+    <a href="{{ route('contact.index') }}" class="btn btn-primary">Get in Touch</a>
 </section>
 @endsection

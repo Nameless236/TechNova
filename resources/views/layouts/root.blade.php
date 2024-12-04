@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('programs.index') }}">Programs</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('innovations') }}">Innovations</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li>
             </ul>
         </div>
     </div>
