@@ -86,19 +86,21 @@ class ProgramController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:4096',
         ]);
 
+        $program->title = $request->input('title');
+        $program->description = $request->input('description');
+
         if ($request->hasFile('image')) {
+            // Delete the old image from storage
+            if ($program->imagePath) {
+                Storage::disk('public')->delete($program->imagePath);
+            }
+
+            // Handle the new image upload
             $imagePath = $request->file('image')->store('program_images', 'public');
-            $program->update([
-                'title' => $request->title,
-                'description' => $request->description,
-                'imagePath' => $imagePath,
-            ]);
-        } else {
-            $program->update([
-                'title' => $request->title,
-                'description' => $request->description,
-            ]);
+            $program->imagePath = $imagePath;
         }
+
+        $program->save();
 
         return redirect()->route('programs.index')->with('alert', 'Program updated successfully.');
     }

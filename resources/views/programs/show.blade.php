@@ -3,7 +3,7 @@
 @section('title', 'TechNova Labs - Programs')
 
 @section('content')
-    <div class="container py-5">
+    <div class="container py-5 show-program-contents">
         <div class="col-12">
             <img src="{{ asset('storage/' . $program->imagePath) }}" class="img-fluid img-detail" alt="{{ $program->title }}">
             <h1>{{ $program->title }}</h1>

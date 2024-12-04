@@ -3,14 +3,32 @@ document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.querySelector('form#contactForm');
 
     if (mainForm) {
+        const changeImageCheckbox = document.getElementById('change-image');
+        const fileInput = document.getElementById('image');
+
+        if (changeImageCheckbox) {
+            changeImageCheckbox.addEventListener('change', function () {
+                fileInput.disabled = !this.checked;
+            });
+        }
+
         mainForm.addEventListener('input', function (event) {
             validateField(event.target);
         });
 
         mainForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            if (validateFormProgram()) {
-                mainForm.submit();
+            if (changeImageCheckbox == null) {
+                event.preventDefault();
+                if (validateFormProgram()) {
+                    mainForm.submit();
+                }
+            } else {
+                if (changeImageCheckbox.checked) {
+                    event.preventDefault();
+                    if (validateFormProgram()) {
+                        mainForm.submit();
+                    }
+                }
             }
         });
     }

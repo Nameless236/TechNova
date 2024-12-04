@@ -127,3 +127,7 @@ p {
     overflow: visible;
     text-align: justify;
 }
+
+.show-program-contents {
+    flex-grow: 1;
+}
