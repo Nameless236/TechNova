@@ -7,7 +7,7 @@ services:
         platform: linux/amd64
         build:
             args:
-                user: user
+                user: pastojakub
                 uid: 1000
             context: .
             dockerfile: ./Dockerfile
@@ -74,7 +74,7 @@ services:
 
     redis:
         image: redis:7.2-alpine
-        container_name: laravel_eleven_redis_container
+        container_name: technova_redis_container
         ports:
             -   "7379:6379"
         networks:
