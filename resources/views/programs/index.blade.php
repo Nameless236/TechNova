@@ -6,7 +6,9 @@
 <div class="hero text-center py-5 bg-light">
     <h1>Our Programs</h1>
     <p>Explore a variety of hands-on programs designed to drive innovation and creativity in the field of technology.</p>
-    <a href="{{ route('programs.create') }}" class="btn btn-primary mb-3">Create New Program</a>
+    @can('create', App\Models\Program::class)
+        <a href="{{ route('programs.create') }}" class="btn btn-primary mb-3">Create New Program</a>
+    @endcan
 </div>
 
 <section class="container py-5">
@@ -21,10 +23,13 @@
                         <p class="card-text">{{ Str::limit($program->description, 30) }}</p>
                         <a href="{{ route('programs.show', $program->id) }}" class="btn btn-primary">Learn More</a>
                     </div>
+                    @can('update', $program)
                     <div class="card-actions position-absolute top-0 end-0 p-2">
                         <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-sm btn-outline-secondary me-1">
                             <i class="bi bi-pencil"></i>
                         </a>
+                        @endcan
+                        @can('delete', $program)
                         <form id="deleteForm-{{ $program->id }}" action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -33,6 +38,7 @@
                             </button>
                         </form>
                     </div>
+                    @endcan
                 </div>
             </div>
         @endforeach

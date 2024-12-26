@@ -23,6 +23,10 @@ class ProgramController extends Controller
      */
     public function create()
     {
+        if (auth()->guest() || request()->user()->cannot('create', Program::class)) {
+            abort(403);
+        }
+
         $program = new Program();
         $action = route('programs.store');
         $method = 'POST';
@@ -69,6 +73,10 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
+        if (auth()->guest() || request()->user()->cannot('update', Program::class)) {
+            abort(403);
+        }
+
         $action = route('programs.update', $program->id);
         $method = 'PUT';
 
@@ -110,6 +118,9 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program): RedirectResponse
     {
+        if (auth()->guest() || request()->user()->cannot('delete', Program::class)) {
+            abort(403);
+        }
         // Delete the image file from storage
         if ($program->imagePath) {
             Storage::disk('public')->delete($program->imagePath);

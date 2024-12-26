@@ -22,8 +22,12 @@ h1, h2 {
 
 }
 
-.navbar a {
+.navbar{
     color: white;
+}
+
+a {
+    color: black;
 }
 
 p {
@@ -130,4 +134,9 @@ p {
 
 .show-program-contents {
     flex-grow: 1;
+}
+
+.login-logo {
+    width: 40vh;
+    height: 100%;
 }
