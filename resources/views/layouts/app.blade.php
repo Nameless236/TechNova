@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', config('app.name', 'TechNova Labs'))</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -14,34 +14,65 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            prefix: 'tw-',
+            corePlugins: {
+                preflight: false,
+            },
+            important: true
+        }
+    </script>
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('style/style.css') }}" type="text/css">
 
-    <!-- Tailwind CSS -->
-    <style>
-        @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
-    </style>
+    @yield('additional_head')
 </head>
 <body class="font-sans antialiased">
-<div class="min-h-screen bg-gray-100">
-    @include('layouts.navigation')
+<div class="min-vh-100 d-flex flex-column">
+        @include('layouts.navigation')
+
 
     <!-- Page Heading -->
-    @isset($header)
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
+    @hasSection('header')
+        <header class="bg-light shadow">
+            <div class="container py-4">
+                @yield('header')
             </div>
         </header>
-    @endisset
+    @endif
+
+    @if(session('alert'))
+        <div class="alert alert-success">
+            {{ session('alert') }}
+        </div>
+    @endif
 
     <!-- Page Content -->
-    <main>
-        {{ $slot }}
+    <main class="flex-grow-1">
+        @yield('content')
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-3 text-center">
+        <p class="mb-0">&copy; 2024 TechNova Labs. All Rights Reserved.</p>
+    </footer>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+@yield('additional_scripts')
 </body>
 </html>

@@ -1,4 +1,4 @@
-@extends('layouts.root')
+@extends('layouts.app')
 
 @section('title', 'TechNova Labs - About Us')
 
@@ -119,6 +119,6 @@
     <section class="container py-5 text-center">
         <h2>Join Our Mission</h2>
         <p>Are you passionate about technology and innovation? Be a part of our community and help shape the future.</p>
-        <a href="{{ route('contact') }}" class="btn btn-primary">Contact Us</a>
+        <a href="{{ route('contact.index') }}" class="btn btn-primary">Contact Us</a>
     </section>
 @endsection

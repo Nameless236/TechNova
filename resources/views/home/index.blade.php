@@ -1,4 +1,4 @@
-@extends('layouts.root')
+@extends('layouts.app')
 
 @section('title', 'TechNova Labs - Home')
 

@@ -25,7 +25,7 @@
     @if(!empty($program->id))
         <div class="mb-3">
             <label for="current-image" class="form-label">Current Image</label>
-            <img src="{{ asset('storage/' . $program->imagePath) }}" class="img-fluid current-edited-image" id="current-image" alt="{{ $program->title }}">
+            <img src="{{ asset('storage/' . $program->imagePath) }}" class="img-fluid current-edited-image thumbnail" id="current-image" alt="{{ $program->title }}">
         </div>
         <div class="mb-3">
             <input type="checkbox" id="change-image" name="change_image">

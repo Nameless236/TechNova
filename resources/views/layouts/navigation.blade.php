@@ -16,6 +16,9 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('innovations') }}">Innovations</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li>
                 @auth
+                    @if(Auth::user()->isAdmin())
+                        <li class="nav-item"><a class="nav-link" href="{{ route('user-management') }}">User Management</a></li>
+                    @endif
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ Auth::user()->name }}
@@ -41,6 +44,7 @@
                         </ul>
                     </li>
                 @endauth
+
             </ul>
         </div>
     </div>

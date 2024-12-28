@@ -140,3 +140,9 @@ p {
     width: 40vh;
     height: 100%;
 }
+
+.thumbnail {
+    width: 150px; /* Adjust the width as needed */
+    height: auto;
+    border-radius: 8px; /* Optional: to make the corners rounded */
+}

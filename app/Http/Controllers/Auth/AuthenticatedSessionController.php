@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return Redirect::intended();
     }
 
     /**
@@ -38,12 +38,15 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        $previousUrl = url()->previous();
+        $request->session()->put('previous_url', $previousUrl);
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
 
-        return Redirect::intended();
+        return redirect($previousUrl);
     }
 }

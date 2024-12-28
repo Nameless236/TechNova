@@ -2,11 +2,9 @@
 
 namespace App\Policies;
 
-use App\Models\Program;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class ProgramPolicy
+class UserManagementPolicy
 {
     public function before(User $user): bool|null
     {
@@ -16,21 +14,20 @@ class ProgramPolicy
 
         return null;
     }
-
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(?User $user): bool
+    public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(?User $user, Program $program): bool
+    public function view(User $user, User $model): bool
     {
-        return true;
+        return $user->id === $model->id;
     }
 
     /**
@@ -44,32 +41,32 @@ class ProgramPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Program $program): bool
+    public function update(User $user, User $model): bool
     {
-        return false;
+        return $user->id === $model->id;
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Program $program): bool
+    public function delete(User $user, User $model): bool
     {
-        return false;
+        return $user->id === $model->id;
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Program $program): bool
+    public function restore(User $user, User $model): bool
     {
-        return false;
+        return $user->id === $model->id;
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Program $program): bool
+    public function forceDelete(User $user, User $model): bool
     {
-        return false;
+        return $user->id === $model->id;
     }
 }

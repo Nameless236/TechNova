@@ -6,6 +6,7 @@ use App\Models\Program;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 
 class ProgramController extends Controller
 {
@@ -14,6 +15,8 @@ class ProgramController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Program::class);
+
         $programs = Program::paginate(10); // Adjust the number of items per page as needed
         return view('programs.index', compact('programs'));
     }
@@ -23,9 +26,7 @@ class ProgramController extends Controller
      */
     public function create()
     {
-        if (auth()->guest() || request()->user()->cannot('create', Program::class)) {
-            abort(403);
-        }
+        Gate::authorize('create', Program::class);
 
         $program = new Program();
         $action = route('programs.store');
@@ -43,6 +44,8 @@ class ProgramController extends Controller
      */
     public function store(Request $request) : RedirectResponse
     {
+        Gate::authorize('create', Program::class);
+
         $request->validate([
             'title' => 'required|string|max:50',
             'description' => 'required|string',
@@ -65,6 +68,8 @@ class ProgramController extends Controller
      */
     public function show(Program $program)
     {
+        Gate::authorize('view', $program);
+
         return view('programs.show', ['program' => $program]);
     }
 
@@ -73,9 +78,7 @@ class ProgramController extends Controller
      */
     public function edit(Program $program)
     {
-        if (auth()->guest() || request()->user()->cannot('update', Program::class)) {
-            abort(403);
-        }
+        Gate::authorize('update', $program);
 
         $action = route('programs.update', $program->id);
         $method = 'PUT';
@@ -88,6 +91,8 @@ class ProgramController extends Controller
      */
     public function update(Request $request, Program $program): RedirectResponse
     {
+        Gate::authorize('update', $program);
+
         $request->validate([
             'title' => 'required|string|max:35',
             'description' => 'required|string',
@@ -118,9 +123,8 @@ class ProgramController extends Controller
      */
     public function destroy(Program $program): RedirectResponse
     {
-        if (auth()->guest() || request()->user()->cannot('delete', Program::class)) {
-            abort(403);
-        }
+        Gate::authorize('delete', $program);
+
         // Delete the image file from storage
         if ($program->imagePath) {
             Storage::disk('public')->delete($program->imagePath);
