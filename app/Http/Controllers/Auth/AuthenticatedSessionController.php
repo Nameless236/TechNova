@@ -39,6 +39,11 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $previousUrl = url()->previous();
+
+        if (Auth::user()->role === 'admin' && str_contains($previousUrl, 'user-management')) {
+            $previousUrl = '/';
+        }
+
         $request->session()->put('previous_url', $previousUrl);
 
         Auth::guard('web')->logout();
