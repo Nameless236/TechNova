@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use App\Models\Review;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 
 class ProgramController extends Controller
 {
@@ -70,8 +72,15 @@ class ProgramController extends Controller
     {
         Gate::authorize('view', $program);
 
-        return view('programs.show', ['program' => $program]);
+        $reviews = Review::with('user')
+            ->where('program_id', $program->id)
+            ->get();
+
+
+        return view('programs.show', compact('program', 'reviews'));
     }
+
+
 
     /**
      * Show the form for editing the specified resource.

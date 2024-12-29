@@ -28,7 +28,6 @@ $(document).ready(function() {
                 users.forEach(function(user) {
                     tableBody += `
                         <tr data-id="${user.id}">
-                            <td>${user.id}</td>
                             <td class="editable" data-field="name">${user.name}</td>
                             <td class="editable" data-field="email">${user.email}</td>
                             <td>

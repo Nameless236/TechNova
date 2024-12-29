@@ -21,5 +21,41 @@
             </form>
         </div>
         @endcan
+        <h2>Reviews</h2>
+        @if($reviews->count())
+            <ul class="list-group">
+                @foreach($reviews as $review)
+                    <li class="list-group-item">
+                        <p>{{ $review->comment }}</p>
+                        <small>By {{ $review->user->name}}</small>
+                        @can('update', [App\Models\Review::class, $review])
+                            <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                        @endcan
+                        @can('delete', $review)
+                            <form action="{{ route('reviews.destroy', $review->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this review?')">Delete</button>
+                            </form>
+                        @endcan
+                    </li>
+                @endforeach
+            </ul>
+        @else
+            <p>No reviews yet.</p>
+        @endif
+
+        @auth
+            <h3>Leave a Review</h3>
+            <form action="{{ route('reviews.store') }}" method="POST">
+                @csrf
+                <input type="hidden" name="program_id" value="{{ $program->id }}">
+                <div class="form-group">
+                    <label for="comment">Comment</label>
+                    <textarea name="comment" id="comment" class="form-control" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
+            </form>
+        @endauth
     </div>
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\Program;
+use App\Models\Review;
 use App\Models\User;
 use App\Policies\ProgramPolicy;
+use App\Policies\ReviewPolicy;
 use App\Policies\UserManagementPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -26,5 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::policy(User::class, UserManagementPolicy::class);
         Gate::policy(Program::class, ProgramPolicy::class);
+        Gate::policy(Review::class, ReviewPolicy::class);
     }
 }

@@ -21,7 +21,6 @@
             <table class="table table-hover" id="usersTable">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
