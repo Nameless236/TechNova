@@ -3,7 +3,9 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,14 +29,10 @@ Route::get('/about', function () {
     return view('about.index');
 })->name('about');
 
-Route::get('/innovations', function () {
-    return view('innovations.index');
-})->name('innovations');
+Route::resource('threads', ThreadController::class);
+Route::post('/threads/{thread}/replies', [ReplyController::class, 'store'])->name('replies.store');
 
-//Route::get('/contact', function () {
-//    return view('contact.index');
-//})->name('contact');
-
+Route::resource('replies', ReplyController::class)->only(['edit', 'update', 'destroy']);
 
 Route::resource('reviews', ReviewController::class);
 
@@ -42,6 +40,6 @@ Route::get('/user-management', [UserManagementController::class, 'index'])->name
 Route::get('/user-management/users', [UserManagementController::class, 'getUsers'])->name('user-management.getUsers');
 Route::put('/user-management/users/{user}', [UserManagementController::class, 'updateUser'])->name('user-management.updateUser');
 
-
 Route::resource('programs', ProgramController::class);
+
 Route::resource('contact', ContactController::class);

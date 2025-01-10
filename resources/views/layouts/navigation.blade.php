@@ -13,8 +13,8 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('programs.index') }}">Programs</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('innovations') }}">Innovations</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('contact.index') }}">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('threads.index') }}">Forum</a></li>
                 @auth
                     @if(Auth::user()->isAdmin())
                         <li class="nav-item"><a class="nav-link" href="{{ route('user-management') }}">User Management</a></li>
