@@ -46,8 +46,6 @@ RUN composer install
 # Skopírujte zvyšok projektu
 COPY . .
 
-# Vygenerujte autoloader
-
 # Prepnutie na vytvoreného používateľa
 USER $user
 
