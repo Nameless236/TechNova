@@ -57,7 +57,7 @@ services:
             - technova_network
 
     phpmyadmin:
-        image: phpmyadmin:5.2.1-apache
+        image: phpmyadmin:5.2.1
         container_name: technova_phpmyadmin_container
         restart: unless-stopped
         ports:
