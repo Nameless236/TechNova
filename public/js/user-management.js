@@ -1,14 +1,14 @@
-$(document).ready(function() {
+$(document).ready(function () {
     loadUsers();
 
     // Search and filter functionality
     let searchTimer;
-    $('#searchInput').on('keyup', function() {
+    $('#searchInput').on('keyup', function () {
         clearTimeout(searchTimer);
         searchTimer = setTimeout(loadUsers, 500);
     });
 
-    $('#roleFilter').on('change', function() {
+    $('#roleFilter').on('change', function () {
         loadUsers();
     });
 
@@ -23,9 +23,9 @@ $(document).ready(function() {
                 search: searchTerm,
                 role: roleFilter
             },
-            success: function(users) {
+            success: function (users) {
                 let tableBody = '';
-                users.forEach(function(user) {
+                users.forEach(function (user) {
                     tableBody += `
                         <tr data-id="${user.id}">
                             <td class="editable" data-field="name">${user.name}</td>
@@ -38,6 +38,9 @@ $(document).ready(function() {
                             </td>
                             <td>${new Date(user.created_at).toLocaleString()}</td>
                             <td>${new Date(user.updated_at).toLocaleString()}</td>
+                            <td>
+                                <button class="btn btn-danger btn-sm delete-user">Delete</button>
+                            </td>
                         </tr>
                     `;
                 });
@@ -46,7 +49,32 @@ $(document).ready(function() {
         });
     }
 
-    $(document).on('click', '.editable', function() {
+    // Handle delete button click
+    $(document).on('click', '.delete-user', function () {
+        const row = $(this).closest('tr');
+        const userId = row.data('id');
+
+        if (confirm('Are you sure you want to delete this user?')) {
+            $.ajax({
+                url: `/user-management/users/${userId}`,
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function () {
+                    alert('User deleted successfully.');
+                    loadUsers(); // Reload the table after deletion
+                },
+                error: function (xhr) {
+                    console.error('Error deleting user:', xhr);
+                    alert('Failed to delete user. Please try again.');
+                }
+            });
+        }
+    });
+
+    // Update user functionality remains unchanged
+    $(document).on('click', '.editable', function () {
         if (!$(this).is('select') && !$(this).find('input').length) {
             const value = $(this).text();
             $(this).html(`<input type="text" class="form-control" value="${value}">`);
@@ -54,11 +82,11 @@ $(document).ready(function() {
         }
     });
 
-    $(document).on('blur', '.editable input', function() {
+    $(document).on('blur', '.editable input', function () {
         updateUser($(this).closest('tr'));
     });
 
-    $(document).on('change', 'select.editable', function() {
+    $(document).on('change', 'select.editable', function () {
         updateUser($(this).closest('tr'));
     });
 
@@ -78,10 +106,10 @@ $(document).ready(function() {
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            success: function() {
+            success: function () {
                 loadUsers();
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 console.error('Error updating user:', xhr);
                 loadUsers(); // Reload on error to reset the view
             }

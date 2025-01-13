@@ -35,6 +35,7 @@ Route::resource('reviews', ReviewController::class);
 Route::get('/user-management', [UserManagementController::class, 'index'])->name('user-management');
 Route::get('/user-management/users', [UserManagementController::class, 'getUsers'])->name('user-management.getUsers');
 Route::put('/user-management/users/{user}', [UserManagementController::class, 'updateUser'])->name('user-management.updateUser');
+Route::delete('/user-management/users/{user}', [UserManagementController::class, 'destroy'])->name('user-management.delete-user');
 
 Route::resource('programs', ProgramController::class);
 

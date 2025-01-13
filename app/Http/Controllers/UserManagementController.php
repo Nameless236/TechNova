@@ -51,4 +51,14 @@ class UserManagementController extends Controller
 
         return response()->json(['message' => 'User updated successfully']);
     }
+
+    public function destroy(User $user)
+    {
+        Gate::authorize('delete', $user);
+
+        $user->delete();
+
+        return response()->json(['message' => 'User deleted successfully']);
+    }
+
 }
