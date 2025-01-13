@@ -10,6 +10,7 @@ This repository contains the source code for **TechNova Labs**, a Laravel 11-bas
 - [Setup Instructions](#setup-instructions)
     - [Prerequisites](#prerequisites)
     - [Steps to Run Locally](#steps-to-run-locally)
+    - [Created by](#created-by)
 
 
 ---
@@ -52,7 +53,6 @@ The project was created as part of semester work for the subject **VAII** to sho
 Ensure you have the following installed:
 1. PHP 8.2 or higher
 2. Composer
-3. Node.js & npm
 
 ### Steps to Run Locally
 
@@ -96,3 +96,9 @@ Ensure you have the following installed:
     - Password: `password`.
 
 8. Access the application in your browser at `http://localhost`.
+
+---
+### **Created by** 
+#### Jakub Pastorek
+
+---
