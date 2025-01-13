@@ -35,7 +35,7 @@ class ReviewController extends Controller
         Gate::authorize('create', Review::class);
 
         $request->validate([
-            'comment' => 'required|string|max:255',
+            'comment' => 'required|string',
             'program_id' => 'required|exists:programs,id',
         ]);
 
@@ -43,7 +43,6 @@ class ReviewController extends Controller
             'comment' => $request->comment,
             'user_id' => Auth::user()->id,
             'program_id' => $request->program_id,
-           // 'created_at' => now(), // Manually set the current date and time
         ]);
 
         return redirect()->route('programs.show', $request->program_id)->with('alert', 'Review submitted successfully.');
@@ -74,7 +73,7 @@ class ReviewController extends Controller
         Gate::authorize('update', $review);
 
         $request->validate([
-            'comment' => 'required|string|max:255',
+            'comment' => 'required|string',
         ]);
 
         $review->comment = $request->input('comment');

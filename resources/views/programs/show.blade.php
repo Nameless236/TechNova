@@ -4,20 +4,23 @@
 
 @section('content')
     <div class="container py-5 show-program-contents">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="{{ asset('storage/' . $program->imagePath) }}" class="img-fluid img-detail" alt="{{ $program->title }}">
-            </div>
-            <div class="col-md-6 d-flex flex-column">
+        <div class="program-details">
+            <!-- Image Section -->
+            <img src="{{ asset('storage/' . $program->imagePath) }}" class="img-fluid img-detail" alt="{{ $program->title }}">
+
+            <!-- Text Section -->
+            <div class="text-container">
                 <h1>{{ $program->title }}</h1>
                 <p class="text-description">{{ $program->description }}</p>
             </div>
         </div>
+
         @can('update', $program)
             <div class="mt-4">
                 <a href="{{ route('programs.edit', $program->id) }}" class="btn btn-primary">Edit</a>
             </div>
         @endcan
+
         @can('delete', $program)
             <form action="{{ route('programs.destroy', $program->id) }}" method="POST" class="d-inline">
                 @csrf
@@ -26,6 +29,7 @@
             </form>
         @endcan
 
+        <!-- Review Section -->
         <div class="review-section">
             <h2>Reviews</h2>
             @if($reviews->count())
@@ -33,7 +37,7 @@
                     @foreach($reviews as $review)
                         <li class="list-group-item">
                             <p>{{ $review->comment }}</p>
-                            <small>By {{ $review->user->name}}</small>
+                            <small>By {{ $review->user->name }}</small>
                             @can('update', [App\Models\Review::class, $review])
                                 <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-secondary btn-sm">Edit</a>
                             @endcan

@@ -49,8 +49,8 @@ class ProgramController extends Controller
         Gate::authorize('create', Program::class);
 
         $request->validate([
-            'title' => 'required|string|max:50',
-            'description' => 'required|string',
+            'title' => 'required|string|max:35',
+            'description' => 'required|string|min:50',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -104,7 +104,7 @@ class ProgramController extends Controller
 
         $request->validate([
             'title' => 'required|string|max:35',
-            'description' => 'required|string',
+            'description' => 'required|string|min:50',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:4096',
         ]);
 

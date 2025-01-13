@@ -10,26 +10,11 @@ use Illuminate\Support\Facades\Gate;
 class ReplyController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, Thread $thread)
     {
+        Gate::authorize('create', Reply::class);
         // Validate the reply body
         $validated = $request->validate([
             'body' => 'required|string',
@@ -54,14 +39,6 @@ class ReplyController extends Controller
         // Redirect to the thread with the correct page number
         return redirect()->route('threads.show', ['thread' => $thread->id, 'page' => $page])
             ->with('success', 'Reply added successfully!');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**

@@ -37,8 +37,8 @@ class ThreadController extends Controller
         Gate::authorize('create', Thread::class);
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required',
+            'title' => 'required|string|min:10|max:255',
+            'body' => 'required|string|min:20',
         ]);
 
         Thread::create([
@@ -85,8 +85,8 @@ class ThreadController extends Controller
         Gate::authorize('update', $thread);
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'body' => 'required',
+            'title' => 'required|string|min:10|max:255',
+            'body' => 'required|string|min:20',
         ]);
 
         $thread->update($validated);

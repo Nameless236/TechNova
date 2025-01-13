@@ -255,4 +255,30 @@ p {
     margin-right: 5px;
 }
 
+/* Container for image and text */
+.program-details {
+    display: block; /* Ensure block-level layout */
+}
+
+/* Styling for the image */
+.img-detail {
+    display: block;
+    margin: 0 20px 0 0; /* Center align and add spacing below */
+    max-width: 30%; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+/* Text styling */
+.text-container {
+    text-align: justify;
+}
+
+
+.text-description {
+    overflow-wrap: break-word;
+    text-align: justify;
+    margin-top: 20px; /* Add spacing between image and text */
+}
+
+
 
