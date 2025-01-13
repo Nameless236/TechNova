@@ -19,7 +19,7 @@ class ThreadPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user)
+    public function viewAny(?User $user)
     {
         return true; // Anyone can view threads
     }
@@ -27,7 +27,7 @@ class ThreadPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Thread $thread)
+    public function view(?User $user, Thread $thread)
     {
         return true; // Anyone can view threads
     }

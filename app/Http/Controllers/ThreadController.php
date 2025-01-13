@@ -14,6 +14,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Thread::class);
         $threads = Thread::latest()->paginate(10);
         return view('threads.index', compact('threads'));
     }
@@ -23,6 +24,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Thread::class);
         return view('threads.create');
     }
 
@@ -53,6 +55,7 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
+        Gate::authorize('view', $thread);
         // Paginate replies with 5 per page (adjust as needed)
         $replies = $thread->replies()->oldest()->paginate(5);
 

@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <!-- Sticky Main Thread Section -->
-        <div class="card-forum thread-question">
+        <!-- Main Thread Section -->
+        <div class="card-forum thread-question mt-4">
             <div class="card-forum-body">
                 <h1 class="card-title">{{ $thread->title }}</h1>
                 <p class="card-text">{{ $thread->body }}</p>
@@ -26,11 +26,11 @@
         </div>
 
         <!-- Replies Section -->
-        <h2>Replies</h2>
+        <h2 class="mt-4">Replies</h2>
 
         <!-- Replies List -->
         @foreach ($replies as $reply)
-            <div class="card-forum">
+            <div class="card-forum mt-3">
                 <div class="card-forum-body">
                     <p>{{ $reply->body }}</p>
 
@@ -58,7 +58,7 @@
         @endforeach
 
         <!-- Pagination Links -->
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center mt-4">
             {{ $replies->links() }}
         </div>
 
