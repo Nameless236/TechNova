@@ -7,11 +7,10 @@ This repository contains the source code for **TechNova Labs**, a Laravel 11-bas
 ## **Table of Contents**
 - [About the Project](#about-the-project)
 - [Features](#features)
-- [Technologies Used](#technologies-used)
 - [Setup Instructions](#setup-instructions)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+    - [Prerequisites](#prerequisites)
+    - [Steps to Run Locally](#steps-to-run-locally)
+
 
 ---
 
@@ -23,17 +22,15 @@ This repository contains the source code for **TechNova Labs**, a Laravel 11-bas
 - A responsive user interface built with **Bootstrap 5**.
 - Practical implementation of database migrations, routing, and Blade templates.
 
-The project was created as part of coursework for the subject **VAII** to showcase proficiency in modern web development tools and frameworks.
+The project was created as part of semester work for the subject **VAII** to showcase proficiency in modern web development tools and frameworks.
 
 ---
 
 ## **Features**
 
 - **User Authentication**: Includes registration, login, email verification, and password reset.
-- **Dynamic Content Management**: Easily customizable pages for "About Us," "Programs," and "Testimonials."
+- **Dynamic Content Management**: Easily customizable pages for "Programs," and "Forum."
 - **Responsive Design**: Fully optimized for desktops, tablets, and mobile devices using Bootstrap.
-- **Testimonials Section**: Displays feedback from users in a visually appealing layout.
-- **Customizable Routes**: Redirects tailored to specific user actions (e.g., post-registration).
 
 ---
 
@@ -56,8 +53,46 @@ Ensure you have the following installed:
 1. PHP 8.2 or higher
 2. Composer
 3. Node.js & npm
-4. MySQL or any other compatible database
 
 ### Steps to Run Locally
 
-1. Clone the repository:
+1. Clone the repository: 
+   ```bash 
+    git clone https://github.com/Nameless236/TechNova.git
+    ```
+2. Install dependencies using Composer:
+    ```bash
+    composer install
+    ```
+3. Set up the `.env` file:
+- Copy `.env.example` to `.env`:
+- Update database variables in `.env`:
+  ```
+  DB_CONNECTION=mysql
+  DB_HOST=db
+  DB_PORT=3306
+  DB_DATABASE=technova_db
+  DB_USERNAME=root
+  DB_PASSWORD=password
+  ```
+
+4. Build and initialize Docker containers:
+    ```bash
+    docker-compose up --build -d
+    ```
+5. Generate an application key:
+    ```bash
+    php artisan key:generate
+    ```
+6. Run database migrations with seeding:
+    ```bash
+    docker exec -it technova_app_container bash
+    php artisan migrate:refresh --seed
+    ```
+7. Default users are created during seeding:
+- Regular users with default passwords set to `password`.
+- Admin account credentials:
+    - Email: `admin@example.com`
+    - Password: `password`.
+
+8. Access the application in your browser at `http://localhost`.
