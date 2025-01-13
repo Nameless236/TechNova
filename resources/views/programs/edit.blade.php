@@ -8,3 +8,6 @@
         @include('programs.form', ['program' => $program, 'action' => $action, 'method' => $method])
     </div>
 @endsection
+@section('additional_scripts')
+    <script src="{{ asset('js/script.js') }}"></script>
+@endsection

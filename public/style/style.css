@@ -19,10 +19,6 @@ h1, h2 {
 
 .navbar {
     background-color: #343a40;
-
-}
-
-.navbar{
     color: white;
 }
 
@@ -33,7 +29,6 @@ a {
 p {
     font-size: 1.2rem;
 }
-
 
 .footer {
     background-color: #343a40;
@@ -122,14 +117,16 @@ p {
 
 .img-detail {
     float: left;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin: 0 20px 0 0;
     max-width: 50%;
+    height: auto;
+    display: block;
 }
 
 .text-description {
-    overflow: visible;
+    margin-top: 20px;
     text-align: justify;
+    overflow-wrap: break-word;
 }
 
 .show-program-contents {
@@ -141,91 +138,48 @@ p {
     height: 100%;
 }
 
-.card-img-top {
-    height: 200px;
-    object-fit: cover;
-}
-.row.g-4 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-
 .thumbnail {
-    width: 150px; /* Adjust the width as needed */
+    width: 150px;
     height: auto;
-    border-radius: 8px; /* Optional: to make the corners rounded */
+    border-radius: 8px;
 }
 
-/* Forum-specific card styling */
 .card-forum {
     display: flex;
-    justify-content: space-between; /* Space between content and buttons */
-    align-items: center; /* Vertically center content */
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for better visibility */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
 }
 
 .card-forum-body {
-    flex: 1; /* Allow the body to take up available space */
+    flex: 1;
 }
 
 .card-forum-buttons {
     display: flex;
-    flex-direction: column; /* Stack buttons vertically */
-    justify-content: center; /* Center buttons vertically */
-    align-items: flex-end; /* Align buttons to the right */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .card-forum-buttons .btn {
-    margin-bottom: 5px; /* Add spacing between buttons */
+    margin-bottom: 5px;
 }
 
-/* Sticky thread question styling */
 .thread-question {
     position: sticky;
-    top: 0; /* Stick to the top of the viewport */
-    background-color: white; /* Ensure it has a background */
-    z-index: 1000; /* Keep it above other elements */
-    padding: 10px; /* Add padding for better visibility */
-    border-bottom: 1px solid #ddd; /* Add a subtle border for separation */
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Ensure the image is responsive and properly sized */
-.img-detail {
-    max-width: 50%;
-    height: auto;
-    margin-right: 20px;
-    display: block;
-    float: left;
-}
-
-/* Container for the text and image */
-.text-image-container {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
-
-.text-image-container h1,
-.text-image-container p {
-    margin-top: 0;
-    flex: 1 1 100%;
-    text-align: justify;
-}
-.text-description {
-    word-break: break-word;
-}
-
-/* Review section styling */
 .review-section {
     margin-top: 40px;
-}
-
-.review-section h2 {
     margin-bottom: 20px;
 }
 
@@ -255,30 +209,16 @@ p {
     margin-right: 5px;
 }
 
-/* Container for image and text */
 .program-details {
-    display: block; /* Ensure block-level layout */
-}
-
-/* Styling for the image */
-.img-detail {
     display: block;
-    margin: 0 20px 0 0; /* Center align and add spacing below */
-    max-width: 30%; /* Adjust width as needed */
-    height: auto; /* Maintain aspect ratio */
 }
 
-/* Text styling */
 .text-container {
     text-align: justify;
 }
 
 
-.text-description {
-    overflow-wrap: break-word;
-    text-align: justify;
-    margin-top: 20px; /* Add spacing between image and text */
-}
+
 
 
 

@@ -102,3 +102,6 @@
     <a href="{{ route('contact.index') }}" class="btn btn-primary">Get in Touch</a>
 </section>
 @endsection
+@section('additional_scripts')
+    <script src="{{ asset('js/script.js') }}"></script>
+@endsection
