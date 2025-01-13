@@ -10,7 +10,7 @@ This repository contains the source code for **TechNova Labs**, a Laravel 11-bas
 - [Setup Instructions](#setup-instructions)
     - [Prerequisites](#prerequisites)
     - [Steps to Run Locally](#steps-to-run-locally)
-    - [Created by](#created-by)
+- [Created by](#created-by)
 
 
 ---
